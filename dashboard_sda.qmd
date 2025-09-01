@@ -1,5 +1,5 @@
 ---
-title: "계량지리학과 공간데이터분석"
+title: "공간분석과 지리교육"
 author: 이상일(서울대학교 지리교육과 교수)
 format: 
   dashboard:
