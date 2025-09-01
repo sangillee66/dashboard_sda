@@ -25,6 +25,39 @@ editor_options:
 ## Row
 
 ```{r}
+#| title: 데이터셋
+library(tidyverse)
+library(reactable)
+
+df_kr <- read_rds("df_kr_2023.rds")
+df_kr |> 
+  reactable(
+    searchable = TRUE,
+    defaultPageSize = 20,
+    theme = reactableTheme(
+      style = list(
+        fontSize = "13px"
+      )
+    ),
+    columns = list(
+      SGG_NM = colDef(sticky = "left"),
+      SD_NM = colDef(sticky = "left"),
+      CBR = colDef(format = colFormat(digits= 3)), 
+      RNI = colDef(format = colFormat(digits= 3)), 
+      GFR = colDef(format = colFormat(digits= 3)),
+      p_f1549 = colDef(format = colFormat(digits= 3)),
+      TFR = colDef(format = colFormat(digits= 3)), 
+      births = colDef(format = colFormat(separators = TRUE)), 
+      increase = colDef(format = colFormat(separators = TRUE))
+    )
+  )
+
+```
+
+
+## Row
+
+```{r}
 #| title: 3D 플롯
 #| fig-width: 12
 #| fig-asp: 1
