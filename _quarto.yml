@@ -1,0 +1,12 @@
+project:
+  title: "dashboard_sda"
+  type: website
+  output-dir: docs
+
+theme: 
+  - flatly
+  - custom_basic_pretendard.scss
+  - custom.scss
+
+editor: visual
+

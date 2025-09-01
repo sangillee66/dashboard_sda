@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 26f4a826-0d7e-4427-a6c5-f075b3c1a6cf
+      url: 'https://sangillee.quarto.pub/dashboard_sda'

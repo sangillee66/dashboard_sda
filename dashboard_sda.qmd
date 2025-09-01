@@ -1,0 +1,72 @@
+---
+title: "계량지리학과 공간데이터분석"
+author: 이상일(서울대학교 지리교육과 교수)
+format: 
+  dashboard:
+    logo: snu_logo_2.png
+    nav-buttons: 
+      - icon: house
+        href: https://sangillee.snu.ac.kr/
+        aria-label: Homepage
+      - icon: github
+        href: https://github.com/sangillee66
+        aria-label: GitHub
+      - icon: envelope
+        href: mailto:si_lee@snu.ac.kr
+        aria-label: Mail
+    scrolling: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# EDA
+
+## Row
+
+```{r}
+#| title: 3D 플롯
+#| fig-width: 12
+#| fig-asp: 1
+#| fig-dpi: 600
+library(tidyverse)
+library(echarts4r)
+
+df_kr <- read_rds("df_kr_2023.rds")
+
+df_kr |> mutate(F_NM = str_c(SD_NM, SGG_NM, sep = " ")) |> 
+  group_by(region) |> 
+  e_charts(TFR) |> 
+  e_scatter_3d(CBR, p_f1549, bind = F_NM, 
+               wireframe = list(show = TRUE)) |> 
+  e_x_axis_3d(name = "TFR") |> 
+  e_y_axis_3d(name = "CBR") |> 
+  e_z_axis_3d(name = "p_f1549") |> 
+  e_tooltip(
+    formatter = htmlwidgets::JS("
+      function(params){
+        return '지역: ' + params.name + '<br>' + 
+               'TFR: ' + params.value[0].toFixed(3) + '<br>' +
+               'CBR: ' + params.value[1].toFixed(3) + '<br>' +
+               'p_f1549: ' + params.value[2].toFixed(3);
+      }
+    ")    
+  ) |> 
+  e_legend(show = TRUE)
+
+```
+
+## Row
+
+```{r}
+#| title: EDA 도구, GWalkR
+
+library(GWalkR)
+gwalkr(df_kr)
+```
+
+
+# 확률분포
+
+# SDA의 원리
+
